@@ -1,0 +1,17 @@
+version: '3'
+services:
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "./integration-tests:/integration-tests"
+      - "./screenshots:/screenshots"
+      - "./secrets/firebase-tools.json:~/.config/configstore/firebase-tools.json"
+    ports:
+      - "5000"
+      - "9005:9005"
+    command:
+      - "bin/bash"
+    stdin_open: true
+    tty: true
